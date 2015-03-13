@@ -8,7 +8,6 @@ var less       = require('gulp-less');
 var rename     = require('gulp-rename');
 var nodemon    = require('gulp-nodemon');
 var jshint     = require('gulp-jshint');
-var react      = require('gulp-react');
 var mocha      = require('gulp-mocha');
 var selenium   = require('gulp-mocha-selenium');
 var livereload = require('gulp-livereload');
