@@ -24,6 +24,7 @@
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0",
     "gulp-jshint": "^1.9.2",
     "gulp-less": "^3.0.1",
     "gulp-livereload": "^3.8.0",
