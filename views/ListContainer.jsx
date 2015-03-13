@@ -9,7 +9,6 @@ var ListContainer = React.createClass({
   },
   render: function() {
     var styles = {};
-
     return (
       <div>
         <List />

@@ -45,7 +45,10 @@ gulp.task('jshint', function () {
 
 gulp.task('browserify', function () {
   watchify(browserify())
-  .transform(babelify) //JSX and ES6
+  .transform(babelify.configure({
+    compact: false,
+    experimental: true
+  })) //JSX and ES6
   .require('./views/ClientBootstrap.jsx', {entry: true})
   .bundle()
   .on('error', function(err) {

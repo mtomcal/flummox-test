@@ -1,6 +1,5 @@
 var React = require('react');
 
-
 var List = React.createClass({
   mixins : [],
   propTypes: {

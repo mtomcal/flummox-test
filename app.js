@@ -1,7 +1,10 @@
 /**
  * Bootstrap ES6 Features
  */
-require('babel/register');
+require('babel/register')({
+  experimental: true,
+  compact: false
+});
 
 /**
  * Run the Server
