@@ -12,7 +12,7 @@ function server() {
   app.use('/static', express['static'](__dirname + '/static'));
 
   app.all('/*', function(req, res, next) {
-    run(Routes, req.path, function (Handler, state, asyncProps) {
+    Router.run(Routes, req.path, function (Handler, state, asyncProps) {
       var entry = React.renderToString(<Handler />);
       var html = React.renderToStaticMarkup(<ServerBootstrap asyncProps={asyncProps} bodyHTML={entry} />);
       res.send('<!DOCTYPE html>' + html);
