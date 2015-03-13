@@ -26,10 +26,12 @@ gulp.task('jshint', function () {
     console.error(err.message);
   })
   .pipe(streamify(jshint({
+    node: true,
     laxbreak: true,
     laxcomma: true,
     es3: true,
     esnext: true, //JSHint Harmony/ES6
+    node: true,
     undef: true,
     eqnull: true,
     browser: true,
