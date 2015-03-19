@@ -1,3 +1,4 @@
+/* jshint esnext: true */
 import express from 'express';
 import React from 'react';
 import Router from 'react-router';
@@ -10,7 +11,7 @@ let app = express();
 function server() {
 
   // LOAD static assets
-  app.use('/static', express['static'](__dirname + '/static'));
+  app.use('/static', express.static(__dirname + '/static'));
 
   app.all('/*', function(req, res, next) {
     let flux = new Flux();

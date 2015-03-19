@@ -8,6 +8,7 @@
     "build": "gulp build",
     "build-production": "NODE_ENV=production gulp build",
     "serve": "gulp",
+    "serve-debug": "gulp debug-server",
     "serve-production": "NODE_ENV=production node --harmony app.js"
   },
   "author": "Michael A Tomcal",

@@ -1,6 +1,7 @@
+/* jshint esnext: true */
 import { Actions, Store, Flummox } from 'flummox';
 
-class MessageActions extends Actions {
+class StarshipActions extends Actions {
     newMessage(content) {
         return content; // automatically dispatched
     }

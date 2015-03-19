@@ -1,4 +1,4 @@
-/* jshint: esnext: true, browser: true */
+/* jshint esnext: true, browser: true */
 import React from 'react';
 
 var ServerBootstrap = React.createClass({

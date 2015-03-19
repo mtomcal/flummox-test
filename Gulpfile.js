@@ -26,7 +26,6 @@ gulp.task('jshint', function () {
     console.error(err.message);
   })
   .pipe(streamify(jshint({
-    node: true,
     laxbreak: true,
     laxcomma: true,
     es3: true,
@@ -40,7 +39,7 @@ gulp.task('jshint', function () {
   .on('error', function(err) {
     console.error(err.message);
   })
-  .pipe(jshint.reporter('jshint-stylish'))
+  .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('browserify', function () {
@@ -118,14 +117,21 @@ gulp.task('selenium', function () {
 
 gulp.task('server', function () {
   livereload.listen();
-  nodemon({ script: 'app.js', ext: 'jsx js', ignore: ["static/*.js", "static/**/*.js"] })
-  .on('change', ['jshint', 'mocha', 'browserify']) //Only reload jsx on change
+  nodemon({ script: 'app.js', ext: 'jsx js', ignore: ["static/*.js", "static/**/*.js"], nodeArgs: ['--harmony'] })
+  .on('change', ['jshint', 'mocha', 'browserify']); //Only reload jsx on change
+});
+
+gulp.task('debug-server', function () {
+  livereload.listen();
+  nodemon({ script: 'app.js', ext: 'jsx js', ignore: ["static/*.js", "static/**/*.js"], nodeArgs: ['--harmony', '--debug'] })
+  .on('change', ['jshint', 'mocha', 'browserify']); //Only reload jsx on change
 });
 
 if (isProduction) {
   gulp.task('default', ['server']);
 } else {
   gulp.task('default', ['jshint', 'browserify', 'server']);
+  gulp.task('server-debug', ['jshint', 'browserify', 'debug-server']);
 }
 gulp.task('test', ['jshint', 'mocha', 'selenium']);
 gulp.task('build', ['less', 'browserify']);
