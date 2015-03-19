@@ -3,7 +3,8 @@
  */
 require('babel/register')({
   experimental: true,
-  compact: false
+  compact: false,
+  optional: ["runtime","asyncToGenerator"]
 });
 
 /**

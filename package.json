@@ -16,11 +16,15 @@
   "dependencies": {
     "axios": "^0.5.1",
     "babel": "^4.7.12",
+    "babel-runtime": "^4.7.16",
+    "bluebird": "^2.9.14",
     "express": "^4.12.2",
     "flummox": "^2.13.1",
+    "lodash": "^3.5.0",
     "react": "^0.12.2",
     "react-router": "^0.12.4",
-    "react-router-async-props": "^0.1.6"
+    "react-router-async-props": "^0.1.6",
+    "regenerator": "^0.8.17"
   },
   "devDependencies": {
     "babelify": "^5.0.4",

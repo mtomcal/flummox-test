@@ -16,19 +16,18 @@ function server() {
   app.all('/*', function(req, res, next) {
     let flux = new Flux();
 
-    flux.getStore('messages')
+
+    flux.getStore('starship')
       .addListener('change', function () {
-        console.log(this);
+        Router.run(Routes, req.path, function (Handler, state) {
+          var asyncProps = flux.serialize();
+          var entry = React.renderToString(<Handler />);
+          var html = React.renderToStaticMarkup(<ServerBootstrap asyncProps={asyncProps} bodyHTML={entry} />);
+          res.send('<!DOCTYPE html>' + html);
+        });
       });
 
-    flux.getActions('messages').newMessage('Hello, world!');
-
-    Router.run(Routes, req.path, function (Handler, state, asyncProps) {
-      var entry = React.renderToString(<Handler />);
-      var html = React.renderToStaticMarkup(<ServerBootstrap asyncProps={asyncProps} bodyHTML={entry} />);
-      res.send('<!DOCTYPE html>' + html);
-    });
-
+    flux.getActions('starship').fetch(9);
   });
 
   app.listen(3000);

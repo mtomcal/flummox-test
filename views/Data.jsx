@@ -1,39 +1,47 @@
-/* jshint esnext: true */
+/* jshint ignore:start */
 import { Actions, Store, Flummox } from 'flummox';
+import axios from 'axios';
+import _ from 'lodash';
 
 class StarshipActions extends Actions {
-    newMessage(content) {
-        return content; // automatically dispatched
+    async fetch(id) {
+        return await axios.get(`http://swapi.co/api/starships/${id}/`);
     }
 }
 
-class MessageStore extends Store {
-    constructor(flux) {
-        super();
-        const messageActions = flux.getActions('messages');
-        this.register(messageActions.newMessage, this.handleNewMessage);
-        this.messageCounter = 0;
+class StarshipStore extends Store {
 
-        this.state = {};
+    static serialize(state) {
+        return JSON.stringify(state);
+    }
+    static deserialize(state) {
+        return JSON.parse(state).starship;
     }
 
-    handleNewMessage(content) {
-        const id = this.messageCounter++;
-
+    constructor(flux) {
+        super();
+        const starshipActions = flux.getActions('starship');
+        this.register(starshipActions.fetch, this.handleStarship);
+        this.state = {};
+    }
+    handleStarship(res) {
         this.setState({
-            [id]: {
-                content,
-                id,
-            },
+            starship: res.data
         });
+    }
+    isEmpty() {
+        return _.isEmpty(this.state);
+    }
+    get() {
+        return this.state;
     }
 }
 
 class Flux extends Flummox {
     constructor() {
         super();
-        this.createActions('messages', MessageActions);
-        this.createStore('messages', MessageStore, this);
+        this.createActions('starship', StarshipActions);
+        this.createStore('starship', StarshipStore, this);
     }
 }
 

@@ -46,7 +46,8 @@ gulp.task('browserify', function () {
   watchify(browserify())
   .transform(babelify.configure({
     compact: false,
-    experimental: true
+    experimental: true,
+    optional: ["runtime","asyncToGenerator"]
   })) //JSX and ES6
   .require('./views/ClientBootstrap.jsx', {entry: true})
   .bundle()
